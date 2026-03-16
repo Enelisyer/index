@@ -706,7 +706,7 @@
         <div class="contact-icon">✉</div>
         <div>
           <small>Dirección de correo electrónico</small>
-          <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="02676c676e7b2c646d6c6542656f636b6e2c616d6f">[email&#160;protected]</a></span>
+          <span><a href="mailto:enely.fong@gmail.com" style="color:var(--blue-dark);text-decoration:none;">enely.fong@gmail.com</a></span>
         </div>
       </div>
 
@@ -732,24 +732,24 @@
     </div>
 
     <div>
-      <form class="contacto-form" action="https://formspree.io/f/xdawwkwr" method="POST">
+      <form class="contacto-form" onsubmit="handleForm(event)">
         <div class="form-row">
           <div class="form-group">
             <label>Nombre</label>
-            <input type="text" name="nombre" placeholder="Tu nombre">
+            <input type="text" placeholder="Tu nombre">
           </div>
           <div class="form-group">
             <label>Teléfono</label>
-            <input type="tel" name="telefono" placeholder="+507 0000-0000">
+            <input type="tel" placeholder="+507 0000-0000">
           </div>
         </div>
         <div class="form-group">
           <label>Correo electrónico</label>
-          <input type="email" name="email" placeholder="correo@ejemplo.com">
+          <input type="email" placeholder="correo@ejemplo.com">
         </div>
         <div class="form-group">
           <label>Tipo de proyecto</label>
-          <select name="tipo_proyecto">
+          <select>
             <option value="">Seleccione una opción</option>
             <option>Planos Eléctricos</option>
             <option>Diseño de Plomería</option>
@@ -761,10 +761,8 @@
         </div>
         <div class="form-group">
           <label>Mensaje</label>
-          <textarea name="mensaje" placeholder="Cuéntanos sobre tu proyecto..."></textarea>
+          <textarea placeholder="Cuéntanos sobre tu proyecto..."></textarea>
         </div>
-        <input type="hidden" name="_subject" value="Nueva cotización desde PlanosParanamá">
-        <input type="hidden" name="_next" value="">
         <button type="submit" class="submit-btn">Solicitar Cotización →</button>
       </form>
     </div>
@@ -776,11 +774,20 @@
 <footer>
   <a href="#" class="logo-text">Planos<span>Panamá</span></a>
   <p>© 2025 PlanosParanamá. Diseño de planos eléctricos, plomería y fotovoltaicos.</p>
-  <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1d7873787164337b72737a5d7a707c7471337e7270">[email&#160;protected]</a> · +507 6166-6449</p>
+  <p>enely.fong@gmail.com · +507 6166-6449</p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// Formulario conectado con Formspree - no requiere JS adicional
+<script>
+function handleForm(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.submit-btn');
+  btn.textContent = '¡Enviado correctamente! ✓';
+  btn.style.background = '#2E9E4F';
+  setTimeout(() => {
+    btn.textContent = 'Solicitar Cotización →';
+    btn.style.background = '';
+  }, 3000);
+}
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(el => {
