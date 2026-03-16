@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planos Eléctricos, Plomería y Fotovoltaicos en Panamá</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue-dark: #1B3A6B;
+    --blue-mid:  #2B5BA8;
+    --blue-light: #3D7CC9;
+    --orange:    #F5A623;
+    --green-cta: #2E9E4F;
+    --green-hover: #27883F;
+    --bg-light:  #F0F2F8;
+    --bg-white:  #FFFFFF;
+    --text-dark: #1A2340;
+    --text-mid:  #3D4F6E;
+    --text-light: #6B7A99;
+    --card-shadow: 0 4px 20px rgba(27,58,107,0.10);
+    --card-radius: 16px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background: var(--bg-white);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: var(--blue-dark);
+    padding: 0.9rem 6vw;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800; font-size: 1.2rem;
+    color: #fff;
+    text-decoration: none;
+  }
+  .logo-text span { color: var(--orange); }
+  nav ul { list-style: none; display: flex; gap: 2rem; }
+  nav ul a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  nav ul a:hover { color: var(--orange); }
+  .nav-cta-btn {
+    background: var(--green-cta);
+    color: #fff !important;
+    padding: 0.45rem 1.1rem;
+    border-radius: 6px;
+    font-weight: 600 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta-btn:hover { background: var(--green-hover) !important; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex; align-items: center;
+    padding: 7rem 6vw 4rem;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(27,58,107,0.82) 0%, rgba(43,91,168,0.70) 60%, rgba(61,124,201,0.50) 100%);
+    z-index: 1;
+  }
+  .hero-img-bg {
+    position: absolute; inset: 0;
+    background:
+      url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1600&q=80') center/cover no-repeat,
+      url('https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=1600&q=80') right/cover no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 780px;
+  }
+  .hero-content h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2rem, 4.5vw, 3.6rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+  }
+  .hero-content h1 span { color: var(--orange); }
+  .hero-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    font-style: italic;
+    font-weight: 500;
+    color: rgba(255,255,255,0.90);
+    margin-bottom: 2.5rem;
+  }
+  .btn-cta {
+    display: inline-block;
+    background: var(--green-cta);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.9rem 2.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.2s;
+    box-shadow: 0 4px 16px rgba(46,158,79,0.4);
+  }
+  .btn-cta:hover { background: var(--green-hover); transform: translateY(-2px); }
+
+  /* ── SERVICIOS PRINCIPALES ── */
+  #servicios {
+    background: var(--bg-light);
+    padding: 5rem 6vw;
+  }
+  .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 800;
+    color: var(--blue-dark);
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .section-title span { color: var(--orange); }
+  .cards-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+  .service-card {
+    background: var(--bg-white);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 32px rgba(27,58,107,0.15);
+  }
+  .card-img {
+    width: 100%; height: 200px;
+    object-fit: cover;
+    display: block;
+  }
+  .card-img-placeholder {
+    width: 100%; height: 200px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem;
+  }
+  .card-img-placeholder.elec { background: linear-gradient(135deg, #1B3A6B, #2B5BA8); }
+  .card-img-placeholder.plom { background: linear-gradient(135deg, #2B5BA8, #3D7CC9); }
+  .card-img-placeholder.solar { background: linear-gradient(135deg, #F5A623, #E8891A); }
+  .card-body {
+    padding: 1.25rem 1.5rem 1.75rem;
+    text-align: center;
+  }
+  .card-body h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--blue-dark);
+    margin-bottom: 0.4rem;
+  }
+  .card-body p {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    line-height: 1.5;
+  }
+
+  /* ── TRÁMITES ── */
+  #tramites {
+    background: var(--bg-white);
+    padding: 5rem 6vw;
+  }
+  .tramites-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.3rem, 2.5vw, 2rem);
+    font-weight: 700;
+    color: var(--blue-mid);
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .cards-grid-3-icon {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+  .icon-card {
+    background: var(--bg-white);
+    border: 1.5px solid #DDE4F0;
+    border-radius: var(--card-radius);
+    padding: 2.5rem 1.5rem 2rem;
+    text-align: center;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.25s, border-color 0.25s;
+  }
+  .icon-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--blue-light);
+  }
+  .icon-circle {
+    width: 72px; height: 72px;
+    background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.25rem;
+    font-size: 1.8rem;
+  }
+  .icon-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--blue-dark);
+    margin-bottom: 0.35rem;
+  }
+  .icon-card p {
+    font-size: 0.82rem;
+    color: var(--text-light);
+  }
+
+  /* ── POR QUÉ ELEGIRNOS ── */
+  #elegirnos {
+    background: var(--bg-light);
+    padding: 5rem 6vw;
+  }
+  .elegirnos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+    margin-top: 3rem;
+  }
+  .elegi-card {
+    background: var(--bg-white);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.25s;
+  }
+  .elegi-card:hover { transform: translateY(-4px); }
+  .elegi-img-placeholder {
+    width: 100%; height: 190px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem;
+  }
+  .elegi-img-placeholder.p1 { background: linear-gradient(135deg, #1B3A6B 0%, #3D7CC9 100%); }
+  .elegi-img-placeholder.p2 { background: linear-gradient(135deg, #2B5BA8 0%, #5B9FE8 100%); }
+  .elegi-img-placeholder.p3 { background: linear-gradient(135deg, #3D7CC9 0%, #85BAEE 100%); }
+  .elegi-badge {
+    display: flex; align-items: center; gap: 0.6rem;
+    background: rgba(27,58,107,0.07);
+    padding: 0.6rem 1rem;
+    margin: 0 1rem;
+    border-radius: 8px;
+    margin-top: -1px;
+  }
+  .badge-icon {
+    width: 32px; height: 32px;
+    background: var(--blue-dark);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+  .elegi-badge span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--blue-dark);
+  }
+  .elegi-footer {
+    padding: 1rem 1.5rem 1.5rem;
+    text-align: center;
+  }
+  .elegi-footer h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--blue-dark);
+    margin-bottom: 0.25rem;
+  }
+  .elegi-footer p { font-size: 0.82rem; color: var(--text-light); }
+
+  /* ── GESTIÓN INTEGRAL ── */
+  #gestion {
+    background: var(--bg-white);
+    padding: 5rem 6vw;
+  }
+  .gestion-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .gestion-box {
+    background: var(--bg-light);
+    border-radius: var(--card-radius);
+    padding: 2rem;
+    border: 1.5px solid #DDE4F0;
+  }
+  .gestion-box h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--blue-dark);
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .gestion-box p {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  .gestion-icons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .gestion-icon-item {
+    background: var(--bg-white);
+    border: 1px solid #DDE4F0;
+    border-radius: 10px;
+    padding: 0.75rem 0.5rem;
+    text-align: center;
+  }
+  .gestion-icon-item .gi { font-size: 1.6rem; display: block; margin-bottom: 0.3rem; }
+  .gestion-icon-item span:last-child {
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--blue-dark);
+    line-height: 1.3;
+    display: block;
+  }
+  .gestion-logos {
+    display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center;
+    margin-top: 0.75rem;
+  }
+  .logo-badge {
+    background: var(--blue-dark);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.3rem 0.6rem;
+    border-radius: 5px;
+    letter-spacing: 0.03em;
+  }
+  .gestion-img-placeholder {
+    height: 280px;
+    background: linear-gradient(135deg, #1B3A6B 0%, #3D7CC9 100%);
+    border-radius: var(--card-radius);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .gestion-img-placeholder::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.03),
+      rgba(255,255,255,0.03) 2px,
+      transparent 2px,
+      transparent 12px
+    );
+  }
+
+  /* ── CONTACTO ── */
+  #contacto {
+    background: var(--bg-light);
+    padding: 5rem 6vw;
+  }
+  .contacto-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .contacto-left h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 800;
+    color: var(--blue-dark);
+    margin-bottom: 0.5rem;
+  }
+  .contacto-left .tagline {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    margin-bottom: 2rem;
+  }
+  .contact-detail {
+    display: flex; gap: 0.9rem;
+    align-items: flex-start;
+    margin-bottom: 1.25rem;
+  }
+  .contact-icon {
+    width: 40px; height: 40px;
+    background: var(--blue-dark);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+    color: #fff;
+  }
+  .contact-detail small {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-light);
+    margin-bottom: 0.1rem;
+  }
+  .contact-detail span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--blue-dark);
+  }
+  .wa-btn {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: var(--green-cta);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-top: 1.5rem;
+    transition: background 0.2s, transform 0.2s;
+    box-shadow: 0 4px 14px rgba(46,158,79,0.35);
+  }
+  .wa-btn:hover { background: var(--green-hover); transform: translateY(-2px); }
+  .contacto-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+  .form-group label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-mid);
+  }
+  .form-group input, .form-group select, .form-group textarea {
+    background: var(--bg-white);
+    border: 1.5px solid #C5D2E8;
+    color: var(--text-dark);
+    padding: 0.7rem 1rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.875rem;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.25s;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--blue-mid);
+  }
+  .form-group textarea { min-height: 90px; resize: vertical; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .submit-btn {
+    background: var(--blue-dark);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0.85rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.2s;
+    margin-top: 0.25rem;
+  }
+  .submit-btn:hover { background: var(--blue-mid); transform: translateY(-1px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--blue-dark);
+    padding: 1.75rem 6vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  footer .logo-text { font-size: 1rem; }
+  footer p { font-size: 0.78rem; color: rgba(255,255,255,0.55); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-content > * {
+    animation: fadeUp 0.65s ease forwards;
+    opacity: 0;
+  }
+  .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-content > *:nth-child(2) { animation-delay: 0.25s; }
+  .hero-content > *:nth-child(3) { animation-delay: 0.42s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .cards-grid-3, .cards-grid-3-icon, .elegirnos-grid { grid-template-columns: 1fr; }
+    .gestion-inner, .contacto-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    nav ul { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo-text">Planos<span>Panamá</span></a>
+  <ul>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#tramites">Trámites</a></li>
+    <li><a href="#elegirnos">Nosotros</a></li>
+    <li><a href="#contacto" class="nav-cta-btn">Cotizar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-img-bg"></div>
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <h1>Planos Eléctricos, Plomería y<br><span>FOTOVOLTAICOS en PANAMÁ</span></h1>
+    <p class="hero-subtitle">Diseño de Proyectos y Gestión de Trámites Municipales</p>
+    <a href="#contacto" class="btn-cta">Solicita tu cotización</a>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="cards-grid-3">
+
+    <div class="service-card">
+      <div class="card-img-placeholder elec">⚡</div>
+      <div class="card-body">
+        <h3>Planos Eléctricos</h3>
+        <p>Diseño y cálculos de instalaciones eléctricas residenciales, comerciales e industriales.</p>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="card-img-placeholder plom">🔧</div>
+      <div class="card-body">
+        <h3>Diseño de Plomería</h3>
+        <p>Diseño y planos de instalaciones sanitarias y de plomería conforme a normas panameñas.</p>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="card-img-placeholder solar">☀️</div>
+      <div class="card-body">
+        <h3>Sistema Fotovoltaicos</h3>
+        <p>Proyecto de energía solar fotovoltaica para hogares, comercios e industria.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TRÁMITES -->
+<section id="tramites">
+  <h2 class="tramites-subtitle">Gestión de Trámites Municipales</h2>
+  <div class="cards-grid-3-icon">
+
+    <div class="icon-card">
+      <div class="icon-circle">📋</div>
+      <h3>Permisos de Construcción</h3>
+      <p>Gestión y obtención de permisos ante el Municipio de Panamá y entidades competentes.</p>
+    </div>
+
+    <div class="icon-card">
+      <div class="icon-circle">💻</div>
+      <h3>Aprobación Digitales</h3>
+      <p>Trámites en línea y documentación para aprobaciones digitales ante organismos reguladores.</p>
+    </div>
+
+    <div class="icon-card">
+      <div class="icon-circle">📐</div>
+      <h3>Entrega de Planos</h3>
+      <p>Diseño, cálculos y entrega de todos los sistemas sellados y listos para presentación.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- POR QUÉ ELEGIRNOS -->
+<section id="elegirnos">
+  <h2 class="section-title">¿Por qué <span>Elegirnos?</span></h2>
+  <div class="elegirnos-grid">
+
+    <div class="elegi-card">
+      <div class="elegi-img-placeholder p1">👷</div>
+      <div class="elegi-badge">
+        <div class="badge-icon">👷</div>
+        <span>Expertos Calificados</span>
+      </div>
+      <div class="elegi-footer">
+        <h3>Expertos Calificados</h3>
+        <p>Ingenieros Especializados</p>
+      </div>
+    </div>
+
+    <div class="elegi-card">
+      <div class="elegi-img-placeholder p2">⏱️</div>
+      <div class="elegi-badge">
+        <div class="badge-icon">📞</div>
+        <span>Atención Rápida</span>
+      </div>
+      <div class="elegi-footer">
+        <h3>Atención Rápida</h3>
+        <p>Seguimiento del proceso</p>
+      </div>
+    </div>
+
+    <div class="elegi-card">
+      <div class="elegi-img-placeholder p3">🏗️</div>
+      <div class="elegi-badge">
+        <div class="badge-icon">✅</div>
+        <span>Soluciones Integrales</span>
+      </div>
+      <div class="elegi-footer">
+        <h3>Soluciones Integrales</h3>
+        <p>Asesoría de Proyectos</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GESTIÓN INTEGRAL -->
+<section id="gestion">
+  <div class="gestion-inner">
+
+    <div class="gestion-box">
+      <h3>Gestión Integral de Permisos</h3>
+      <p>Nos encargamos del diseño, aprobación y gestión digital ante las entidades competentes en Panamá.</p>
+      <div class="gestion-icons">
+        <div class="gestion-icon-item">
+          <span class="gi">📄</span>
+          <span>Permiso de Construcción</span>
+        </div>
+        <div class="gestion-icon-item">
+          <span class="gi">⚡</span>
+          <span>Planos Eléctricos</span>
+        </div>
+        <div class="gestion-icon-item">
+          <span class="gi">🚿</span>
+          <span>Planos Sanitarios</span>
+        </div>
+        <div class="gestion-icon-item">
+          <span class="gi">☀️</span>
+          <span>Sistema Fotovoltaico</span>
+        </div>
+        <div class="gestion-icon-item">
+          <span class="gi">🔥</span>
+          <span>Aprobación Bomberos</span>
+        </div>
+        <div class="gestion-icon-item">
+          <span class="gi">🖥️</span>
+          <span>Gestión Digital Completa</span>
+        </div>
+      </div>
+      <div class="gestion-logos">
+        <span class="logo-badge">Municipio de Panamá</span>
+        <span class="logo-badge">BCBRP</span>
+        <span class="logo-badge">Ministerio de Salud</span>
+        <span class="logo-badge">NFPA</span>
+        <span class="logo-badge">Digital PDF</span>
+      </div>
+    </div>
+
+    <div class="gestion-img-placeholder">🏙️</div>
+
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="contacto-inner">
+
+    <div class="contacto-left">
+      <h2>Contáctanos Hoy</h2>
+      <p class="tagline">Solicita tu cotización sin compromiso</p>
+
+      <div class="contact-detail">
+        <div class="contact-icon">✉</div>
+        <div>
+          <small>Dirección de correo electrónico</small>
+          <span>enely.fong@gmail.com</span>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="contact-icon">📞</div>
+        <div>
+          <small>Número de teléfono</small>
+          <span>+507 6166-6449</span>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="contact-icon">📍</div>
+        <div>
+          <small>Ubicación</small>
+          <span>Ciudad de Panamá, Panamá</span>
+        </div>
+      </div>
+
+      <a href="https://wa.me/50761666449" class="wa-btn" target="_blank">
+        💬 Escríbenos en WhatsApp
+      </a>
+    </div>
+
+    <div>
+      <form class="contacto-form" onsubmit="handleForm(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" placeholder="Tu nombre">
+          </div>
+          <div class="form-group">
+            <label>Teléfono</label>
+            <input type="tel" placeholder="+507 0000-0000">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Correo electrónico</label>
+          <input type="email" placeholder="correo@ejemplo.com">
+        </div>
+        <div class="form-group">
+          <label>Tipo de proyecto</label>
+          <select>
+            <option value="">Seleccione una opción</option>
+            <option>Planos Eléctricos</option>
+            <option>Diseño de Plomería</option>
+            <option>Sistema Fotovoltaico</option>
+            <option>Permiso de Construcción</option>
+            <option>Gestión Integral (todo incluido)</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Mensaje</label>
+          <textarea placeholder="Cuéntanos sobre tu proyecto..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Solicitar Cotización →</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="logo-text">Planos<span>Panamá</span></a>
+  <p>© 2025 PlanosParanamá. Diseño de planos eléctricos, plomería y fotovoltaicos.</p>
+  <p>enely.fong@gmail.com · +507 6166-6449</p>
+</footer>
+
+<script>
+function handleForm(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.submit-btn');
+  btn.textContent = '¡Enviado correctamente! ✓';
+  btn.style.background = '#2E9E4F';
+  setTimeout(() => {
+    btn.textContent = 'Solicitar Cotización →';
+    btn.style.background = '';
+  }, 3000);
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(el => {
+    if (el.isIntersecting) {
+      el.target.style.opacity = '1';
+      el.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.service-card, .icon-card, .elegi-card, .gestion-icon-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(16px)';
+  el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
