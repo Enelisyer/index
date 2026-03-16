@@ -706,7 +706,7 @@
         <div class="contact-icon">✉</div>
         <div>
           <small>Dirección de correo electrónico</small>
-          <span>enely.fong@gmail.com</span>
+          <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="02676c676e7b2c646d6c6542656f636b6e2c616d6f">[email&#160;protected]</a></span>
         </div>
       </div>
 
@@ -732,24 +732,24 @@
     </div>
 
     <div>
-      <form class="contacto-form" onsubmit="handleForm(event)">
+      <form class="contacto-form" action="https://formspree.io/f/xdawwkwr" method="POST">
         <div class="form-row">
           <div class="form-group">
             <label>Nombre</label>
-            <input type="text" placeholder="Tu nombre">
+            <input type="text" name="nombre" placeholder="Tu nombre">
           </div>
           <div class="form-group">
             <label>Teléfono</label>
-            <input type="tel" placeholder="+507 0000-0000">
+            <input type="tel" name="telefono" placeholder="+507 0000-0000">
           </div>
         </div>
         <div class="form-group">
           <label>Correo electrónico</label>
-          <input type="email" placeholder="correo@ejemplo.com">
+          <input type="email" name="email" placeholder="correo@ejemplo.com">
         </div>
         <div class="form-group">
           <label>Tipo de proyecto</label>
-          <select>
+          <select name="tipo_proyecto">
             <option value="">Seleccione una opción</option>
             <option>Planos Eléctricos</option>
             <option>Diseño de Plomería</option>
@@ -761,8 +761,10 @@
         </div>
         <div class="form-group">
           <label>Mensaje</label>
-          <textarea placeholder="Cuéntanos sobre tu proyecto..."></textarea>
+          <textarea name="mensaje" placeholder="Cuéntanos sobre tu proyecto..."></textarea>
         </div>
+        <input type="hidden" name="_subject" value="Nueva cotización desde PlanosParanamá">
+        <input type="hidden" name="_next" value="">
         <button type="submit" class="submit-btn">Solicitar Cotización →</button>
       </form>
     </div>
@@ -774,36 +776,14 @@
 <footer>
   <a href="#" class="logo-text">Planos<span>Panamá</span></a>
   <p>© 2025 PlanosParanamá. Diseño de planos eléctricos, plomería y fotovoltaicos.</p>
-  <p>enely.fong@gmail.com · +507 6166-6449</p>
+  <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1d7873787164337b72737a5d7a707c7471337e7270">[email&#160;protected]</a> · +507 6166-6449</p>
 </footer>
 
-<script>
-function handleForm(e) {
-  e.preventDefault();
-  const btn = e.target.querySelector('.submit-btn');
-  btn.textContent = '¡Enviado correctamente! ✓';
-  btn.style.background = '#2E9E4F';
-  setTimeout(() => {
-    btn.textContent = 'Solicitar Cotización →';
-    btn.style.background = '';
-  }, 3000);
-}
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Formulario conectado con Formspree - no requiere JS adicional
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(el => {
     if (el.isIntersecting) {
       el.target.style.opacity = '1';
-      el.target.style.transform = 'translateY(0)';
-    }
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.service-card, .icon-card, .elegi-card, .gestion-icon-item').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(16px)';
-  el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
-  observer.observe(el);
-});
-</script>
-</body>
-</html>
+      el.target.style.transfo
